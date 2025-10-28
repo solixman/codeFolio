@@ -2,8 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-import sessionConfig from './config/session';
-import './config/DB';
+import sessionConfig from '../config/session';
+import '../config/DB';
 import { graphqlHTTP } from 'express-graphql';
 import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
 
