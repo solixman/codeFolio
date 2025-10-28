@@ -1,5 +1,2 @@
-// // const express = require('express')
-// let router = express.Router
-
-
-// module.exports=router;
+import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
+import User from '../models/User';
