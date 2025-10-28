@@ -13,7 +13,25 @@ app.use(session(sessionConfig));
 app.use(express.json());
 app.use(cookieParser());
 
+const RootQuery = new GraphQLObjectType({
+  name: 'Query',
+  fields: {
+    hello: {
+      type: GraphQLString,
+      resolve: () => 'Hello GraphQL 👋'
+    }
+  }
+});
 
+const schema = new GraphQLSchema({
+  query: RootQuery
+});
+
+
+app.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true, 
+}));
 
 
 
