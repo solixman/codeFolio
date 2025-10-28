@@ -7,6 +7,7 @@ import '../config/DB';
 import { graphqlHTTP } from 'express-graphql';
 import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
 import {login} from '../controllers/authController';
+import { authMutationFields } from './Graphql/mutations/authMutaions';
 
 const app = express();
 app.use(express.urlencoded({ extended : true }));
@@ -26,25 +27,11 @@ const RootQuery = new GraphQLObjectType({
 
 
 
-const authType= new GraphQLObjectType({
-    name:'auth',
-    fields:{
-        token:{ type: GraphQLString },
-    }
-})
-
 
 const rootMutation=new GraphQLObjectType({
     name:'Mutation',
     fields:{
-        login:{
-            type: authType,
-            args:{
-                email:{ type: GraphQLString },
-                password:{ type: GraphQLString }
-            },
-            resolve:(_, args) => login(args.email,args.password)
-        }
+        ...authMutationFields,
     }
 });
 

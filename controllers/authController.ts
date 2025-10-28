@@ -2,8 +2,9 @@ import User from "../models/User";
 
 export async function login(email:string ,password:string){
 
-let token = email+password;
 
-return token;
+let token = "hi"+email+password+"";
+
+return {token};
 
 }
