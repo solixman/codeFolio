@@ -1,12 +1,7 @@
-
-interface ProfileUpdateData {
-  firstName?: string;
-  lastName?: string;
-  bio?: string;
-  title?: string;
-  phone?: string;
-  pfp?: string;
-  location?: string;
+interface UserUpdateData {
+  email?: string;
+  userName?: string;
+  role?: string;
 }
 
-export default ProfileUpdateData
+export default UserUpdateData

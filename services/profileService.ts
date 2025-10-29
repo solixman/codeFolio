@@ -1,19 +1,31 @@
-import ProfileUpdateData from "../interfaces/UserUpdateData";
+import ProfileUpdateData from "../interfaces/ProfileUpdateData";
 import Profile from "../models/Profile"
 
 
 
-export async function update(id: any, data:ProfileUpdateData ) {
+export async function update(id: any, data: ProfileUpdateData) {
 
     try {
 
-        let profile = await Profile.findOne({ userId: id });
+        let profile = await Profile.findOne({ user: id });
 
-        if (!profile) throw new Error('something went wrong, profile doesnt exist');
+        if (!profile) {
+            profile = new Profile({user:id});
+        }
 
         Object.assign(profile, data);
-        await profile.save()
-        return profile;
+        profile = await profile.save()
+
+        return {
+            id: profile._id,
+            firstName: profile.firstName,
+            lastName: profile.lastName,
+            bio: profile.bio,
+            title: profile.title,
+            phone: profile.phone,
+            pfp: profile.pfp,
+            location: profile.location,
+        };
 
     } catch (error) {
         throw error

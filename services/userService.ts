@@ -1,9 +1,9 @@
-import UserUpdateData from "../interfaces/ProfileUpdateData";
+import UserUpdateData from "../interfaces/UserUpdateData";
 import User from "../models/User";
 
 
 
-export async function update(id:string,data: UserUpdateData) {
+export async function update(id: string, data: UserUpdateData) {
     try {
 
         let user = await User.findById(id);
@@ -12,8 +12,14 @@ export async function update(id:string,data: UserUpdateData) {
         }
 
         Object.assign(user, data)
-        await user.save();
-        return user
+        user = await user.save();
+
+        return {
+            id: user._id,
+            userName: user.userName,
+            email: user.email,
+            role: user.role,
+        };
 
     } catch (error) {
         throw error;

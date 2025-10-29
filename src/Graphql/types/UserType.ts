@@ -1,5 +1,4 @@
 import { GraphQLID, GraphQLObjectType, GraphQLString } from "graphql";
-import { profileType } from "./profieType";
 
 export const userType = new GraphQLObjectType({
   name: "User",

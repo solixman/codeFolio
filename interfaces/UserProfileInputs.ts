@@ -1,5 +1,8 @@
-
-interface ProfileUpdateData {
+export interface UserProfileInput {
+  id: string;
+  userName?: string;
+  email?: string;
+  role?: string;
   firstName?: string;
   lastName?: string;
   bio?: string;
@@ -8,5 +11,3 @@ interface ProfileUpdateData {
   pfp?: string;
   location?: string;
 }
-
-export default ProfileUpdateData

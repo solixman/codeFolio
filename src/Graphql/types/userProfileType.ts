@@ -4,9 +4,9 @@ import { profileType } from "./profieType";
 
 
 export const userProfileType = new GraphQLObjectType({
-  name: "UserProfile",
-  fields: {
-    user: { type: userType },
-    profile: { type: profileType },
-  },
+    name: "UserProfile",
+    fields: {
+        user: { type: userType },
+        profile: { type: profileType },
+    },
 });

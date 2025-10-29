@@ -1,8 +1,9 @@
+import { UserProfileInput } from './../interfaces/UserProfileInputs';
 import * as userService from "../services/userService";
 import * as profileService from "../services/profileService";
 
 
-export async function update(data: any) {
+export async function update(data: UserProfileInput) {
     try {
         const userData = {
             userName: data.userName,
@@ -20,13 +21,11 @@ export async function update(data: any) {
             location: data.location,
         };
 
-        let user = await userService.update(data.id,userData);
-        let profile = await profileService.update(user._id, profileData);
+        let user = await userService.update(data.id, userData);
+        let profile = await profileService.update(data.id, profileData);
 
-        return {
-            user,
-            profile
-        }
+        return { user, profile }
+
 
     } catch (err: any) {
         console.log(err)
