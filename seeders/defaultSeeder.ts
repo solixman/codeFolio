@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import User from '../models/User';
-import "../config/DB";
+import "../src/config/DB";
 dotenv.config();
 
 

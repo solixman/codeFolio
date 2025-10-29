@@ -11,6 +11,6 @@
     "types": ["node"],
     "lib": ["ES2020"]
   },
-  "include": ["src/**/*", "config/**/*"],
+  "include": ["src/**/*", "src/config/**/*"],
   "exclude": ["node_modules", "dist"]
 }
