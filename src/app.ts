@@ -6,8 +6,9 @@ import sessionConfig from './config/session';
 import './config/DB';
 import { graphqlHTTP } from 'express-graphql';
 import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
-import {login} from '../controllers/authController';
 import { authMutationFields } from './Graphql/mutations/authMutaions';
+import { userMutaionFields } from './Graphql/mutations/userMutations';
+import { userQueryFields } from './Graphql/queries/userQueries';
 
 dotenv.config();
 
@@ -24,7 +25,8 @@ const RootQuery = new GraphQLObjectType({
     hello: {
       type: GraphQLString,
       resolve: () => 'Hello GraphQL 👋'
-    }
+    },
+    ...userQueryFields
   }
 });
 
@@ -35,6 +37,7 @@ const rootMutation=new GraphQLObjectType({
     name:'Mutation',
     fields:{
         ...authMutationFields,
+        ...userMutaionFields,
     }
 });
 

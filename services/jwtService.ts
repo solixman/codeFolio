@@ -1,7 +1,7 @@
 import jwt  from 'jsonwebtoken';
 import User  from '../models/User';
 import dotenv from "dotenv";
-import UserPayload from '../interfaces/payloads/UserPayload';
+import UserPayload from '../interfaces/UserPayload';
 dotenv.config();
 
 
