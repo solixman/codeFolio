@@ -20,19 +20,15 @@ export async function update(data: UserProfileInput) {
             pfp: data.pfp,
             location: data.location,
         };
+        let id= process.env.ID
 
-        let user = await userService.update(data.id, userData);
-        let profile = await profileService.update(data.id, profileData);
-
+        let user = await userService.update(id, userData);
+        let profile = await profileService.update(id, profileData);
         return { user, profile }
-
-
     } catch (err: any) {
         console.log(err)
         return {
             error: err.message
         }
     }
-
-
 }
