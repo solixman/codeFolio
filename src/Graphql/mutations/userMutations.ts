@@ -3,7 +3,7 @@ import { userProfileType } from "../types/userProfileType";
 import * as userController from "../../../controllers/userController"
 
 
-export const profileMutaionFields = {
+export const userMutaionFields = {
     update: {
         type: userProfileType,
         args: {
@@ -22,6 +22,6 @@ export const profileMutaionFields = {
         resolve: async (_: any, args: any) => {
             return await userController.update(args);
         },
-    },
+    }
 }
 

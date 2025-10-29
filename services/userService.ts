@@ -24,4 +24,21 @@ export async function update(id: string, data: UserUpdateData) {
     } catch (error) {
         throw error;
     }
-} 
+}
+
+export async function getone(id:string) {
+    try{
+
+        let user=await User.findById(id);
+        if(!user) throw new Error("something went wrong, user doesn't exist");
+
+         return {
+            id: user._id,
+            userName: user.userName,
+            email: user.email,
+            role: user.role,
+        };
+    } catch (error) {
+        throw error
+    }
+}
