@@ -4,7 +4,6 @@ import { login } from "../../../controllers/authController"
 
 
 export const authMutationFields = {
-
     login: {
         type: authType,
         args: {

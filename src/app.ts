@@ -6,8 +6,8 @@ import sessionConfig from './config/session';
 import './config/DB';
 import { graphqlHTTP } from 'express-graphql';
 import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
-import {login} from '../controllers/authController';
 import { authMutationFields } from './Graphql/mutations/authMutaions';
+import { profileMutaionFields } from './Graphql/mutations/ProfileMutations';
 
 dotenv.config();
 
@@ -35,6 +35,7 @@ const rootMutation=new GraphQLObjectType({
     name:'Mutation',
     fields:{
         ...authMutationFields,
+        ...profileMutaionFields,
     }
 });
 
