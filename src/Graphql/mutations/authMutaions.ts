@@ -1,6 +1,7 @@
 import { authType } from './../types/authType';
 import { GraphQLString } from "graphql"
-import { login } from "../../../controllers/authController"
+import { login,logout } from "../../../controllers/authController"
+import {messageType} from "./../types/messageType"
 
 
 export const authMutationFields = {
@@ -11,7 +12,14 @@ export const authMutationFields = {
             email: { type: GraphQLString },
             password: { type: GraphQLString }
         },
-resolve: async (_:any, args:any) => {
-  return await login(args.email, args.password);
-}    }
+        resolve: async (_: any, args: any) => {
+            return await login(args.email, args.password);
+        }
+    },
+    logout: {
+      type:messageType,
+      resolve: async (_: any,__:any,context:any)=>{
+        return await logout(context.req)
+    }
+    }
 }
