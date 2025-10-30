@@ -9,6 +9,7 @@ import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
 import { authMutationFields } from './Graphql/mutations/authMutaions';
 import { userMutaionFields } from './Graphql/mutations/userMutations';
 import { userQueryFields } from './Graphql/queries/userQueries';
+import { projectMutations } from './Graphql/mutations/projectMutations';
 
 dotenv.config();
 
@@ -21,14 +22,14 @@ app.use(cookieParser());
 
 const RootQuery = new GraphQLObjectType({
 
-  name: 'Query',
-  fields: {
-    hello: {
-      type: GraphQLString,
-      resolve: () => 'Hello GraphQL 👋'
-    },
-    ...userQueryFields
-  }
+    name: 'Query',
+    fields: {
+        hello: {
+            type: GraphQLString,
+            resolve: () => 'Hello GraphQL 👋'
+        },
+        ...userQueryFields
+    }
 });
 
 const rootMutation = new GraphQLObjectType({
@@ -36,6 +37,7 @@ const rootMutation = new GraphQLObjectType({
     fields: {
         ...authMutationFields,
         ...userMutaionFields,
+        ...projectMutations
     }
 });
 
@@ -53,7 +55,7 @@ app.use(
         graphiql: true,
         context: { req, res },
     })
-))
+    ))
 
 
 
