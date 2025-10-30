@@ -6,8 +6,18 @@ export async function create(user: UserPayload, data: projectData) {
     try {
         let id = user.id
         return await projectService.create(id, data);
-        
+
     } catch (error: any) {
         return { error: error.message }
+    }
+}
+
+export async function deleteProject(id:string){
+    try {
+        if(!id) throw new Error('the Id should be a valid one');
+        
+        return await projectService.deleteProject(id);
+    } catch (error:any) {
+     return {error:error.message}   
     }
 }
