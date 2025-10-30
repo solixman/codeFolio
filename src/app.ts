@@ -13,13 +13,14 @@ import { userQueryFields } from './Graphql/queries/userQueries';
 dotenv.config();
 
 const app = express();
-app.use(express.urlencoded({ extended : true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(session(sessionConfig));
 app.use(express.json());
 app.use(cookieParser());
 
 
 const RootQuery = new GraphQLObjectType({
+
   name: 'Query',
   fields: {
     hello: {
@@ -30,12 +31,9 @@ const RootQuery = new GraphQLObjectType({
   }
 });
 
-
-
-
-const rootMutation=new GraphQLObjectType({
-    name:'Mutation',
-    fields:{
+const rootMutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
         ...authMutationFields,
         ...userMutaionFields,
     }
@@ -43,15 +41,19 @@ const rootMutation=new GraphQLObjectType({
 
 
 const schema = new GraphQLSchema({
-  query: RootQuery,
-  mutation:rootMutation
+    query: RootQuery,
+    mutation: rootMutation
 });
 
 
-app.use('/graphql', graphqlHTTP({
-  schema,
-  graphiql: true, 
-}));
+app.use(
+    '/graphql',
+    graphqlHTTP((req, res) => ({
+        schema,
+        graphiql: true,
+        context: { req, res },
+    })
+))
 
 
 
