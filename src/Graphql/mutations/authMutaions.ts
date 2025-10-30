@@ -2,6 +2,7 @@ import { authType } from './../types/authType';
 import { GraphQLString } from "graphql"
 import { login,logout } from "../../../controllers/authController"
 import {messageType} from "./../types/messageType"
+import {requireAuth} from "../../../middlewares/authMiddleware";
 
 
 export const authMutationFields = {
@@ -19,6 +20,7 @@ export const authMutationFields = {
     logout: {
       type:messageType,
       resolve: async (_: any,__:any,context:any)=>{
+        await requireAuth(context.req);
         return await logout(context.req)
     }
     }
