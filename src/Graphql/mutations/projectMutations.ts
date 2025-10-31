@@ -6,7 +6,7 @@ import { messageType } from "../types/messageType";
 import { Context } from "vm";
 
 export const projectMutations = {
-    create: {
+    createProject: {
         type: projectType,
         args: {
             title: { type: GraphQLString },
