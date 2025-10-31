@@ -12,6 +12,7 @@ import { userQueryFields } from './Graphql/queries/userQueries';
 import { projectMutations } from './Graphql/mutations/projectMutations';
 import { projectQueries } from './Graphql/queries/projectQueries';
 import { skillMutations } from './Graphql/mutations/skillMutations';
+import { skillQueries } from './Graphql/queries/skillQueries';
 
 dotenv.config();
 
@@ -31,7 +32,8 @@ const RootQuery = new GraphQLObjectType({
             resolve: () => 'Hello GraphQL 👋'
         },
         ...userQueryFields,
-        ...projectQueries
+        ...projectQueries,
+        ...skillQueries
     }
 });
 

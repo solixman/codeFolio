@@ -1,5 +1,6 @@
 import { SkillData } from "../interfaces/SkillData";
 import UserPayload from "../interfaces/UserPayload";
+import Skill from "../models/Skill";
 import * as skillService from "../services/skillService"; 
 
 
@@ -34,4 +35,15 @@ export async function attachSkill(projectId: string, skillId: string) {
     } catch (error: any) {
         return { error: error.message };
     }
+}
+
+
+export async function getAll() {
+  return await Skill.find();
+}
+
+export async function getById(id:string) {
+  const skill = await Skill.findById(id);
+  if (!skill) throw new Error("Skill not found");
+  return skill;
 }
