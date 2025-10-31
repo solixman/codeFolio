@@ -9,49 +9,55 @@ import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
 import { authMutationFields } from './Graphql/mutations/authMutaions';
 import { userMutaionFields } from './Graphql/mutations/userMutations';
 import { userQueryFields } from './Graphql/queries/userQueries';
+import { projectMutations } from './Graphql/mutations/projectMutations';
+import { projectQueries } from './Graphql/queries/projectQueries';
 
 dotenv.config();
 
 const app = express();
-app.use(express.urlencoded({ extended : true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(session(sessionConfig));
 app.use(express.json());
 app.use(cookieParser());
 
 
 const RootQuery = new GraphQLObjectType({
-  name: 'Query',
-  fields: {
-    hello: {
-      type: GraphQLString,
-      resolve: () => 'Hello GraphQL 👋'
-    },
-    ...userQueryFields
-  }
+
+    name: 'Query',
+    fields: {
+        hello: {
+            type: GraphQLString,
+            resolve: () => 'Hello GraphQL 👋'
+        },
+        ...userQueryFields,
+        ...projectQueries
+    }
 });
 
-
-
-
-const rootMutation=new GraphQLObjectType({
-    name:'Mutation',
-    fields:{
+const rootMutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
         ...authMutationFields,
         ...userMutaionFields,
+        ...projectMutations
     }
 });
 
 
 const schema = new GraphQLSchema({
-  query: RootQuery,
-  mutation:rootMutation
+    query: RootQuery,
+    mutation: rootMutation
 });
 
 
-app.use('/graphql', graphqlHTTP({
-  schema,
-  graphiql: true, 
-}));
+app.use(
+    '/graphql',
+    graphqlHTTP((req, res) => ({
+        schema,
+        graphiql: true,
+        context: { req, res },
+    })
+    ))
 
 
 

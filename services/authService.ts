@@ -1,7 +1,7 @@
 import bcrypt  from 'bcrypt';
 import User from "../models/User";
+import blacklistedToken from "../models/BlacklistedToken"
 import { create } from "../services/jwtService"
-
 
 export async function login(email: string, password: string) {
 
@@ -19,7 +19,7 @@ export async function login(email: string, password: string) {
     }
 
     const payload = {
-        _id: user._id.toString(),
+        id: user._id.toString(),
         email: user.email!,
         role: user.role!,
         name: user.userName!
@@ -28,4 +28,18 @@ export async function login(email: string, password: string) {
     let token = create(payload);
 
     return token
+}
+
+export async function logout(token:string){
+try {
+
+    let blt=new blacklistedToken();
+    blt.token =token; 
+    await blt.save() 
+    return {message:"logged out succesfully"}
+
+} catch (error) {
+    console.log(error);
+    throw error
+}
 }

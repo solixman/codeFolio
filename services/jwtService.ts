@@ -9,7 +9,7 @@ dotenv.config();
 export function create(user:UserPayload) {
         try {
             const accessToken = jwt.sign({
-                id: user._id,
+                id: user.id,
                 email: user.email,
                 role: user.role,
                 name:user.name
