@@ -26,3 +26,21 @@ export async function updateExperience(data: any) {
     return { error: error.message };
   }
 }
+
+export async function getExperience(id: string) {
+  try {
+    return await experienceService.getOneById(id);
+  } catch (error: any) {
+    console.log(error);
+    return { error: error.message };
+  }
+}
+
+export async function getAllExperience() {
+  try {
+    return await experienceService.getAll();
+  } catch (error: any) {
+    console.log(error);
+    return { error: error.message };
+  }
+}

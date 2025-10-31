@@ -72,3 +72,27 @@ export async function updateExperience(data: any) {
     throw error;
   }
 }
+
+
+
+export async function getOneById(id: string) {
+  try {
+    if (!id) throw new Error("Experience ID is required");
+
+    const experience = await Experience.findById(id);
+    if (!experience) throw new Error("Experience not found");
+
+    return experience;
+  } catch (error: any) {
+    throw error;
+  }
+}
+
+export async function getAll() {
+  try {
+    const experiences = await Experience.find();
+    return experiences;
+  } catch (error: any) {
+    throw error;
+  }
+}
