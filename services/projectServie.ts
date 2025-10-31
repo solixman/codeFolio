@@ -67,3 +67,15 @@ export async function getAll(){
              throw error;
     }
 }
+
+
+export async function getOne(id:string){
+    try {
+        let project= await Project.findById(id);
+
+        if(!project) throw new Error('something went wrong, id is not on database');
+        return project;
+    } catch (error:any) {
+       throw error;
+    }
+}

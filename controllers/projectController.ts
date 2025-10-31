@@ -40,3 +40,13 @@ export async function getAll(){
         return { error: error.message }
     }
 }
+
+
+export async function getOne(id:string){
+    try {
+        return await projectService.getOne(id);
+    } catch (error:any) {
+        console.log(error);
+        return { error: error.message }
+    }
+}
