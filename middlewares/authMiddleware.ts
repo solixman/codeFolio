@@ -1,3 +1,4 @@
+import { JwtPayload } from './../node_modules/@types/jsonwebtoken/index.d';
 // middleware/authMiddleware.ts
 import jwt from "jsonwebtoken";
 import blacklistedToken from "../models/BlacklistedToken";
@@ -24,10 +25,11 @@ export async function requireAuth(req: any) {
     }
 
     try {
-        const decoded = jwt.verify(token, JWT_SECRET);
+        const decoded: any = jwt.verify(token, JWT_SECRET);
+        console.log('authenticated')
         return {
             user: {
-                id: decoded.id,
+                id: decoded.id!,
                 email: decoded.email,
                 role: decoded.role,
                 name: decoded.name

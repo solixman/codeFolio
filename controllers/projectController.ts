@@ -12,12 +12,22 @@ export async function create(user: UserPayload, data: projectData) {
     }
 }
 
-export async function deleteProject(id:string){
+export async function deleteProject(id: string) {
     try {
-        if(!id) throw new Error('the Id should be a valid one');
-        
+        if (!id) throw new Error('the Id should be a valid one');
+
         return await projectService.deleteProject(id);
+    } catch (error: any) {
+        return { error: error.message }
+    }
+}
+
+export async function updateProject(data:projectData) {
+    try {
+
+        return await projectService.update(data);
     } catch (error:any) {
-     return {error:error.message}   
+        console.log(error);
+        return { error: error.message }
     }
 }
