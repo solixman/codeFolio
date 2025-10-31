@@ -27,7 +27,7 @@ export async function create(id: string, data: projectData) {
 
 export async function deleteProject(id: string) {
     try {
-        let exists = !Project.exists({ id: id })
+        let exists = Project.exists({ id: id })
 
         if (!exists) throw new Error('something went wrong, id is not valid');
 
