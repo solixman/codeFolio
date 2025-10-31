@@ -24,23 +24,23 @@ export const projectMutations = {
     deleteProject: {
         type: messageType,
         args: {
-            id: {type:GraphQLString}
+            id: { type: GraphQLString }
         },
         resolve: async (_: any, args: any, context: Context) => {
             await requireAuth(context.req);
             return await projectController.deleteProject(args.id);
         }
     },
-    updateProject:{
-        type:projectType,
-        args:{
-            id:{type:GraphQLString},
+    updateProject: {
+        type: projectType,
+        args: {
+            id: { type: GraphQLString },
             title: { type: GraphQLString },
             description: { type: GraphQLString },
             demoLink: { type: GraphQLString },
             image: { type: GraphQLString },
         },
-        resolve:async (_:any,args:any,context:Context)=>{
+        resolve: async (_: any, args: any, context: Context) => {
             await requireAuth(context.req);
             return projectController.updateProject(args);
         }

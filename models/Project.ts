@@ -6,6 +6,7 @@ const projectSchema = new mongoose.Schema({
   demoLink: String,
   image: String,
   profile: { type: mongoose.Schema.Types.ObjectId, ref: "Profile", required: true },
+  skills: [{ type:  String , ref: "Skill" }]
 });
 
 export default mongoose.model("Project", projectSchema);

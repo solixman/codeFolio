@@ -1,5 +1,3 @@
-import { ToString } from './../node_modules/mongoose/types/expressions.d';
-import { userType } from './../src/Graphql/types/UserType';
 import projectData from "../interfaces/projectData";
 import Project from "../models/Project";
 

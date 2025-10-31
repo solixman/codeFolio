@@ -10,5 +10,6 @@ export const projectType = new GraphQLObjectType({
         description:{type:GraphQLString},
         demoLink:{type:GraphQLString},
         image:{type:GraphQLString},
+        message:{type:GraphQLString}
     }
 })
