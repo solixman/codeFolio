@@ -11,6 +11,7 @@ import { userMutaionFields } from './Graphql/mutations/userMutations';
 import { userQueryFields } from './Graphql/queries/userQueries';
 import { projectMutations } from './Graphql/mutations/projectMutations';
 import { projectQueries } from './Graphql/queries/projectQueries';
+import { skillMutations } from './Graphql/mutations/skillMutations';
 
 dotenv.config();
 
@@ -39,7 +40,8 @@ const rootMutation = new GraphQLObjectType({
     fields: {
         ...authMutationFields,
         ...userMutaionFields,
-        ...projectMutations
+        ...projectMutations,
+        ...skillMutations
     }
 });
 
