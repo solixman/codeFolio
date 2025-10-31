@@ -1,7 +1,7 @@
 import Experience from "../models/Experience";
 import Profile from "../models/Profile"
 
-export async function createExperienceService(data: any) {
+export async function createExperience(data: any) {
     try {
         let { role, company, startDate, profile } = data;
 
@@ -27,4 +27,18 @@ export async function createExperienceService(data: any) {
     } catch (error: any) {
         throw error;
     }
+}
+
+export async function deleteExperience(experienceId: string) {
+  try {
+    const experience = await Experience.findById(experienceId);
+    if (!experience) {
+      throw new Error("Experience not found");
+    }
+
+    await Experience.findByIdAndDelete(experienceId);
+    return { success: true, message: "Experience deleted successfully" };
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
 }
