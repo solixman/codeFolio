@@ -31,3 +31,12 @@ export async function updateProject(data:projectData) {
         return { error: error.message }
     }
 }
+
+export async function getAll(){
+    try {
+        return await projectService.getAll();
+    } catch (error:any) {
+          console.log(error);
+        return { error: error.message }
+    }
+}

@@ -59,3 +59,11 @@ export async function update(data: projectData) {
         throw error;
     }
 }
+
+export async function getAll(){
+    try {
+         return await Project.find();
+    } catch (error:any) {
+             throw error;
+    }
+}

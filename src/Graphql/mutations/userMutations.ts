@@ -2,6 +2,7 @@ import { GraphQLString } from "graphql";
 import { userProfileType } from "../types/userProfileType";
 import * as userController from "../../../controllers/userController"
 import { requireAuth } from "../../../middlewares/authMiddleware";
+import { Context } from "vm";
 
 
 export const userMutaionFields = {
@@ -20,7 +21,7 @@ export const userMutaionFields = {
             pfp: { type: GraphQLString },
             location: { type: GraphQLString },
         },
-        resolve: async (_: any, args: any,context:any) => {
+        resolve: async (_: any, args: any,context:Context) => {
             await requireAuth(context.req);
             return await userController.update(args);
         },
