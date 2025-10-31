@@ -29,3 +29,16 @@ export async function create(id:string,data: SkillData) {
         throw error
     }
 }
+
+export async function deleteSkill(id: string) {
+    try {
+        const exists = await Skill.exists({ _id: id });
+        if (!exists) throw new Error('something went wrong, id is not valid');
+
+        await Skill.findByIdAndDelete(id);
+        return { message: 'skill deleted succesfully' };
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
