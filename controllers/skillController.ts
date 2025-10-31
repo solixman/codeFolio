@@ -23,3 +23,15 @@ export async function deleteSkill(id: string) {
         return { error: error.message };
     }
 }
+
+
+export async function attachSkill(projectId: string, skillId: string) {
+    try {
+        if (!projectId || !skillId)
+            throw new Error("both projectId and skillId are required");
+
+        return await skillService.attachSkill(projectId, skillId);
+    } catch (error: any) {
+        return { error: error.message };
+    }
+}

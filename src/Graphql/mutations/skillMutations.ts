@@ -4,6 +4,7 @@ import { createSkillType } from "../types/createSkillType";
 import { requireAuth } from "../../../middlewares/authMiddleware";
 import * as skillController from "../../../controllers/skillController"
 import { messageType } from '../types/messageType';
+import { projectType } from '../types/projectType';
 
 
 export const skillMutations = {
@@ -29,5 +30,16 @@ export const skillMutations = {
             await requireAuth(context.req);
             return await skillController.deleteSkill(args.id);
         }
-    }
+    },
+    attachSkill: {
+    type: messageType,
+    args: {
+      projectId: { type: GraphQLString },
+      skillId: { type: GraphQLString },
+    },
+    resolve: async (_: any, args: any, context: any) => {
+      await requireAuth(context.req);
+      return skillController.attachSkill(args.projectId, args.skillId);
+    },
+  },
 }
