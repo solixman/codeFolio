@@ -42,3 +42,33 @@ export async function deleteExperience(experienceId: string) {
     throw new Error(error.message);
   }
 }
+
+export async function updateExperience(data: any) {
+  try {
+    const { id, role, company, startDate, endDate, city, description, profile } = data;
+
+    if (!id) throw new Error("Experience ID is required");
+
+    const experience = await Experience.findById(id);
+    if (!experience) throw new Error("Experience not found");
+
+    if (role) experience.role = role;
+    if (company) experience.company = company;
+    if (city) experience.city = city;
+    if (description) experience.description = description;
+    if (startDate) experience.startDate = startDate;
+    if (endDate)  experience.endDate = endDate;
+    
+    if (profile) {
+      const existingProfile = await Profile.findById(profile);
+      if (!existingProfile) throw new Error("Profile not found");
+      experience.profile = profile;
+    }
+
+    await experience.save();
+    return experience;
+
+  } catch (error: any) {
+    throw error;
+  }
+}

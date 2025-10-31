@@ -1,4 +1,4 @@
-import * as projectService from "../services/projectServie";
+import * as projectService from "../services/projectService";
 import UserPayload from "../interfaces/UserPayload"
 import projectData from "../interfaces/projectData";
 

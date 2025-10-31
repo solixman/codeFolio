@@ -17,3 +17,12 @@ export async function deleteExperience(experienceId: string) {
     throw new Error(error.message);
   }
 }
+
+export async function updateExperience(data: any) {
+  try {
+    return await experienceService.updateExperience(data);
+  } catch (error: any) {
+    console.log(error);
+    return { error: error.message };
+  }
+}

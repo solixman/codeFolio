@@ -32,4 +32,20 @@ export const experienceMutations = {
       return experienceController.deleteExperience(args.id);
     },
   },
+  updateExperience: {
+    type: experienceType,
+    args: {
+      id: { type: GraphQLID },
+      role: { type: GraphQLString },
+      company: { type: GraphQLString },
+      city: { type: GraphQLString },
+      description: { type: GraphQLString },
+      startDate: { type: GraphQLString },
+      endDate: { type: GraphQLString },
+    },
+    resolve: async (_: any, args: any, context: any) => {
+      await requireAuth(context.req);
+      return experienceController.updateExperience(args);
+    },
+}
 }
